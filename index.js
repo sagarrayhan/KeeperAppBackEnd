@@ -7,18 +7,26 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb://127.0.0.1:27017/keeperApp");
+
+const mongoUrl =
+  "mongodb+srv://sagarrayhan:mongo.db.2023@cluster0.ccok37n.mongodb.net/?retryWrites=true&w=majority";
+mongoose
+  .connect(mongoUrl)
+  .then(() => {
+    console.log("Connection Successfull");
+  })
+  .catch((err) => console.log(err));
 
 const notesScema = mongoose.Schema({ title: String, note: String });
 const Notes = mongoose.model("Notes", notesScema);
 
-app.get("/", async (req, res) => {
-  await Notes.find({}).then((data) => res.json(data));
+app.get("/", (req, res) => {
+  Notes.find({}).then((data) => res.json(data));
 });
 
-app.post("/", async (req, res) => {
+app.post("/", (req, res) => {
   const note = new Notes(req.body);
-  await note.save();
+  note.save();
   res.json(note);
 });
 
@@ -27,10 +35,10 @@ app.post("/delete", (req, res) => {
   Notes.findByIdAndRemove(id).exec();
 });
 
-app.post("/login" , (req, res)=>{
-   const logindata = req.body;
-   console.log(logindata);
-})
+app.post("/login", (req, res) => {
+  const logindata = req.body;
+  console.log(logindata);
+});
 
 app.listen(3000, () => {
   console.log("Connected on port 3000");
