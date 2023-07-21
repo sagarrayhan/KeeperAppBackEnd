@@ -4,7 +4,8 @@ import cors from "cors";
 
 const app = express();
 
-app.use(cors());
+app.use(cors(
+));
 app.use(express.json());
 
 
@@ -43,3 +44,5 @@ app.post("/login", (req, res) => {
 app.listen(3000, () => {
   console.log("Connected on port 3000");
 });
+
+module.exports = app;
