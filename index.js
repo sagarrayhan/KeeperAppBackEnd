@@ -41,8 +41,4 @@ app.post("/login", (req, res) => {
   console.log(logindata);
 });
 
-app.listen(3000, () => {
-  console.log("Connected on port 3000");
-});
-
-module.exports = app;
+app.listen(3000, ()=>{console.log("running on port 3000");})
