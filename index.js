@@ -10,7 +10,7 @@ app.use(express.json());
 
 
 const mongoUrl =
-  "mongodb+srv://sagarrayhan:mongo.db.2023@cluster0.ccok37n.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://sagarrayhan:sagarrayhan@cluster0.oj88j.mongodb.net/Keeper?retryWrites=true&w=majority&appName=Cluster0";
 mongoose
   .connect(mongoUrl)
   .then(() => {
